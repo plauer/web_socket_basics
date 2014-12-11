@@ -16,19 +16,19 @@ var server = app.listen('3000');
 var io = socket.listen(server);
 
 // SOCKET IO
-var active_connections = 0; //initialize active connections with 0
+var activeConnections = 0; //initialize active connections with 0
 
 io.sockets.on('connection', function (socket) {
 
-  active_connections++
+  activeConnections++
 
   //emit a user:connect event to client every time a connection is made
-  io.sockets.emit('user:connect', active_connections);
+  io.sockets.emit('user:connect', activeConnections);
 
   //emit a user:disconnect event to client  every time a connection is lost
   socket.on('disconnect', function () {
-    active_connections--
-    io.sockets.emit('user:disconnect', active_connections);
+    activeConnections--
+    io.sockets.emit('user:disconnect', activeConnections);
   });
 
 
