@@ -13,23 +13,23 @@ var server = app.listen('3000');
 
 
 // //tell our sockets to listen on the same port as our server
-// var io = socket.listen(server);
+var io = socket.listen(server);
 
-// // SOCKET IO
-// var active_connections = 0; //initialize active connections with 0
+// SOCKET IO
+var active_connections = 0; //initialize active connections with 0
 
-// io.sockets.on('connection', function (socket) {
+io.sockets.on('connection', function (socket) {
 
-//   active_connections++
+  active_connections++
 
-//   //emit a user:connect event to client every time a connection is made
-//   io.sockets.emit('user:connect', active_connections);
+  //emit a user:connect event to client every time a connection is made
+  io.sockets.emit('user:connect', active_connections);
 
-//   //emit a user:disconnect event to client  every time a connection is lost
-//   socket.on('disconnect', function () {
-//     active_connections--
-//     io.sockets.emit('user:disconnect', active_connections);
-//   });
+  //emit a user:disconnect event to client  every time a connection is lost
+  socket.on('disconnect', function () {
+    active_connections--
+    io.sockets.emit('user:disconnect', active_connections);
+  });
 
 
-// });
+});
